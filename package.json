@@ -1,0 +1,28 @@
+{
+  "name": "gulp-json-editor",
+  "version": "1.0.0",
+  "description": "Gulp plugin to edit JSON object",
+  "license": "MIT",
+  "keywords": [
+    "gulpplugin"
+  ],
+  "homepage": "https://github.com/morou/gulp-json-editor",
+  "bugs": "https://github.com/morou/gulp-json-editor/issues",
+  "author": {
+    "name": "Kazuhiro Nakae",
+    "email": "kazuhiro.nakae@gmail.com",
+    "url": "https://github.com/morou"
+  },
+  "main": "./index.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/morou/gulp-json-editor.git"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "dependencies": {
+    "through": "~2.3.4",
+    "gulp-util": "~2.2.14"
+  }
+}
