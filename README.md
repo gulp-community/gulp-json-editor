@@ -18,7 +18,7 @@ gulp.src("./manifest.json")
 ## API
 ### json(editorFunction)
 #### editorFunction
-The `editorFunction` must have the following signature: function (obj) {}, and must return JSON object.
+The `editorFunction` must have the following signature: `function (obj) {}`, and must return JSON object.
 
 
 ## License
