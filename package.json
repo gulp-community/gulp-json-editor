@@ -1,10 +1,12 @@
 {
   "name": "gulp-json-editor",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A gulp plugin to edit JSON object",
   "license": "MIT",
   "keywords": [
-    "gulpplugin"
+    "gulpplugin",
+    "gulp",
+    "json"
   ],
   "homepage": "https://github.com/morou/gulp-json-editor",
   "bugs": "https://github.com/morou/gulp-json-editor/issues",
