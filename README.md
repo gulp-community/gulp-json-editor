@@ -14,7 +14,7 @@ gulp.src("./manifest.json")
   .pipe(gulp.dest("./dest"));
 ```
 
-#### Note
+### Note
 In case of such situation, all of comment and white space in source file isn't kept in destination file.
 
 ## API
