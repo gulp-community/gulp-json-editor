@@ -1,3 +1,5 @@
+/* jshint node: true */
+
 var through     = require('through2');
 var PluginError = require('gulp-util').PluginError;
 

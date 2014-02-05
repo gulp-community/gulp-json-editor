@@ -1,6 +1,9 @@
+/* jshint node: true */
+/* global describe, it */
+
 var json = require('../');
 var gulp = require("gulp");
-should = require('should');
+require('should');
 require('mocha');
 
 describe('gulp-json-editor', function() {
