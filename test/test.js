@@ -72,7 +72,7 @@ describe('gulp-json-editor', function() {
     //
     it('should modify nested property of JSON object', function(done) {
       var stream = gulp.src('test/test.json').pipe(json(function(obj) {
-        obj.nested.version = '2.0.0';
+        obj.nested.version = '2.0.1';
         return obj;
       }));
       stream.on('error', done);
@@ -80,7 +80,7 @@ describe('gulp-json-editor', function() {
         var obj = JSON.parse(file.contents);
         obj.nested.should.have.properties({
           'name': 'nested object',
-          'version': '2.0.0'
+          'version': '2.0.1'
         });
       });
       stream.on('end', done);
@@ -91,7 +91,7 @@ describe('gulp-json-editor', function() {
     //
     it('should add nested property of JSON object', function(done) {
       var stream = gulp.src('test/test.json').pipe(json(function(obj) {
-        obj.nested.description = 'this is test';
+        obj.nested.description = 'this is test for nested';
         return obj;
       }));
       stream.on('error', done);
@@ -100,7 +100,7 @@ describe('gulp-json-editor', function() {
         obj.nested.should.have.properties({
           'name': 'nested object',
           'version': '1.0.0',
-          'description': 'this is test'
+          'description': 'this is test for nested'
         });
       });
       stream.on('end', done);
@@ -119,6 +119,36 @@ describe('gulp-json-editor', function() {
         var obj = JSON.parse(file.contents);
         obj.nested.should.have.properties({
           'version': '1.0.0'
+        });
+        obj.nested.should.not.have.property('name');
+      });
+      stream.on('end', done);
+    });
+
+    //
+    // test: edit multiple properties at once
+    //
+    it('should multiple properties of JSON object', function(done) {
+      var stream = gulp.src('test/test.json').pipe(json(function(obj) {
+        obj.version = '2.0.0';
+        obj.description = 'this is test';
+        delete obj.name;
+        obj.nested.version = '2.0.1';
+        obj.nested.description = 'this is test for nested';
+        delete obj.nested.name;
+        return obj;
+      }));
+      stream.on('error', done);
+      stream.on('data', function(file) {
+        var obj = JSON.parse(file.contents);
+        obj.should.have.properties({
+          'version': '2.0.0',
+          'description': 'this is test'
+        });
+        obj.should.not.have.property('name');
+        obj.nested.should.have.properties({
+          'version': '2.0.1',
+          'description': 'this is test for nested'
         });
         obj.nested.should.not.have.property('name');
       });
