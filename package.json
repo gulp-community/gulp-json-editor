@@ -22,7 +22,12 @@
     "test": "mocha"
   },
   "dependencies": {
-    "through": "~2.3.4",
-    "gulp-util": "~2.2.14"
+    "gulp-util": "~2.2.14",
+    "through2": "~0.4.1"
+  },
+  "devDependencies": {
+    "gulp": "*",
+    "mocha": "*",
+    "should": "*"
   }
 }
