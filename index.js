@@ -1,5 +1,6 @@
 /* jshint node: true */
 
+var beautify    = require('js-beautify').js_beautify;
 var through     = require('through2');
 var PluginError = require('gulp-util').PluginError;
 
@@ -26,7 +27,13 @@ module.exports = function (editor) {
 
     // edit JSON object
     try {
-      file.contents = new Buffer(JSON.stringify(editor(JSON.parse(file.contents.toString('utf8')))));
+      file.contents = new Buffer(beautify(JSON.stringify(editor(JSON.parse(file.contents.toString('utf8')))), {
+        'indent_with_tabs': false,
+        'indent_size':      2,
+        'indent_char':      ' ',
+        'indent_level':     0,
+        'brace_style':      'collapse'
+      }));
     }
     catch (err) {
       this.emit('error', new PluginError('gulp-json-editor', err));
