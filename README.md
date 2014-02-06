@@ -7,9 +7,9 @@ gulp-json-editor is a [gulp](https://github.com/wearefractal/gulp) plugin to edi
 var jeditor = require("gulp-json-editor");
 
 gulp.src("./manifest.json")
-  .pipe(jeditor(function(obj) {
-    obj.version = "1.2.3";
-    return obj;
+  .pipe(jeditor(function(json) {
+    json.version = "1.2.3";
+    return json;
   }))
   .pipe(gulp.dest("./dest"));
 ```
@@ -18,7 +18,7 @@ gulp.src("./manifest.json")
 In case of such situation, all of comment and white space in source file isn't kept in destination file.
 
 ## API
-### json(editorFunction)
+### jeditor(editorFunction)
 #### editorFunction
 The `editorFunction` must have the following signature: `function (obj) {}`, and must return JSON object.
 
