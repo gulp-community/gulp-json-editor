@@ -20,7 +20,7 @@ In case of such situation, all of comment and white space in source file isn't k
 ## API
 ### jeditor(editorFunction)
 #### editorFunction
-The `editorFunction` must have the following signature: `function (obj) {}`, and must return JSON object.
+The `editorFunction` must have the following signature: `function (json) {}`, and must return JSON object.
 
 ## License
 [MIT License](http://en.wikipedia.org/wiki/MIT_License)
