@@ -17,7 +17,7 @@ gulp.src("./manifest.json")
 ```
 
 ### Note
-- In case of such above situation, all of comment in source file isn't kept in destination file.
+In case of such above situation, all of comment in source file isn't kept in destination file.
 
 ## API
 ### jeditor(editorFunction, [beautify])
