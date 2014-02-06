@@ -10,6 +10,7 @@ gulp.src("./manifest.json")
   .pipe(jeditor(function(json) {
     // json is normal JSON object. You can modify / add / remove any properties.
     json.version = "1.2.3";
+    // must return JSON object.
     return json;
   }))
   .pipe(gulp.dest("./dest"));
