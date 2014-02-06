@@ -7,9 +7,9 @@ module.exports = function (editor) {
 
   // check options
   if (!editor)
-    throw new PluginError('gulp-json-editor', 'missing "editor function" option for gulp-json-editor');    
+    throw new PluginError('gulp-json-editor', 'missing "editor function" option');    
   if (typeof editor !== 'function')
-    throw new PluginError('gulp-json-editor', '"editor function" option must be Function');    
+    throw new PluginError('gulp-json-editor', '"editor function" option must be function');    
 
   return through.obj(function (file, encoding, callback) {
 
@@ -20,7 +20,7 @@ module.exports = function (editor) {
 
     // stream is not supported
     if (file.isStream()) {
-      this.emit('error', new PluginError('gulp-json-editor', 'Streaming not supported'));
+      this.emit('error', new PluginError('gulp-json-editor', 'Streaming is not supported'));
       return callback();
     }
 
