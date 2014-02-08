@@ -6,22 +6,40 @@ gulp-json-editor is a [gulp](https://github.com/wearefractal/gulp) plugin to edi
 ```javascript
 var jeditor = require("gulp-json-editor");
 
+/*
+  edit JSON object by merging with user specific object
+*/
+gulp.src("./manifest.json")
+  .pipe(jeditor({
+    'version': '1.2.3'
+  }))
+  .pipe(gulp.dest("./dest"));
+
+/*
+  edit JSON object by using user specific function
+*/
 gulp.src("./manifest.json")
   .pipe(jeditor(function(json) {
-    // json is normal JSON object. You can modify / add / remove any properties.
     json.version = "1.2.3";
-    // must return JSON object.
-    return json;
+    return json; // must return JSON object.
   }))
   .pipe(gulp.dest("./dest"));
 ```
 
 ### Note
-In case of such above situation, all of comment and whitespace in source file isn't kept in destination file.
+In case of such above situation, all of comment and whitespace in source file is **NOT** kept in destination file.
 
 ## API
-### jeditor(editorFunction, [beautify])
+### jeditor(editorObject)
+#### editorObject
+Type: `JSON object`
+
+JSON object to merge with.
+
+### jeditor(editorFunction)
 #### editorFunction
+Type: `function`
+
 The `editorFunction` must have the following signature: `function (json) {}`, and must return JSON object.
 
 ## License

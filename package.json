@@ -1,6 +1,6 @@
 {
   "name": "gulp-json-editor",
-  "version": "1.2.0",
+  "version": "2.0.0",
   "description": "A gulp plugin to edit JSON object",
   "license": "MIT",
   "keywords": [
@@ -26,7 +26,8 @@
   "dependencies": {
     "gulp-util": "~2.2.14",
     "through2": "~0.4.1",
-    "js-beautify": "~1.4.2"
+    "js-beautify": "~1.4.2",
+    "deepmerge": "~0.2.7"
   },
   "devDependencies": {
     "gulp": "*",

@@ -1,20 +1,33 @@
 /* jshint node: true */
 
 var jsbeautify  = require('js-beautify').js_beautify;
+var merge       = require('deepmerge');
 var through     = require('through2');
 var PluginError = require('gulp-util').PluginError;
 
 module.exports = function (editor) {
 
-  // check options
-  if (!editor)
-    throw new PluginError('gulp-json-editor', 'missing "editor function" option');
-  if (typeof editor !== 'function')
-    throw new PluginError('gulp-json-editor', '"editor function" option must be function');
+  // edit JSON object by user specific function
+  function editByFunction(json) {
+    return JSON.stringify(editor(json));
+  }
+
+  // edit JSON object by merging with user specific object
+  function editByObject(json) {
+    return JSON.stringify(merge(json, editor));
+  }
 
   // always beautify output
   var beautify = true;
+  var editByXXX;
 
+  // check options
+  if (typeof editor === 'function') editByXXX = editByFunction;
+  else if (typeof editor === 'object') editByXXX = editByObject;
+  else if (typeof editor === 'undefined') throw new PluginError('gulp-json-editor', 'missing "editor function" option');
+  else throw new PluginError('gulp-json-editor', '"editor function" option must be function');
+
+  // create through object
   return through.obj(function (file, encoding, callback) {
 
     // ignore it
@@ -30,7 +43,7 @@ module.exports = function (editor) {
 
     // edit JSON object
     try {
-      var json = JSON.stringify(editor(JSON.parse(file.contents.toString('utf8'))));
+      var json = editByXXX(JSON.parse(file.contents.toString('utf8')));
       if (beautify) {
         json = jsbeautify(json, {
           'indent_with_tabs': false,
