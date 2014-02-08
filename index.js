@@ -4,13 +4,16 @@ var jsbeautify  = require('js-beautify').js_beautify;
 var through     = require('through2');
 var PluginError = require('gulp-util').PluginError;
 
-module.exports = function (editor, beautify) {
+module.exports = function (editor) {
 
   // check options
   if (!editor)
-    throw new PluginError('gulp-json-editor', 'missing "editor function" option');    
+    throw new PluginError('gulp-json-editor', 'missing "editor function" option');
   if (typeof editor !== 'function')
-    throw new PluginError('gulp-json-editor', '"editor function" option must be function');    
+    throw new PluginError('gulp-json-editor', '"editor function" option must be function');
+
+  // always beautify output
+  var beautify = true;
 
   return through.obj(function (file, encoding, callback) {
 
