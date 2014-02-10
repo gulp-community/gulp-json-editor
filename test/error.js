@@ -1,37 +1,41 @@
 /* jshint node: true */
-/* global describe, it */
+/* global it */
 
-var json   = require('../');
-var gulp   = require("gulp");
-require('should');
+var jedit  = require('../');
+var gutil  = require('gulp-util');
+var fs     = require('fs');
+var should = require('should');
 require('mocha');
 
-describe('gulp-json-editor', function() {
-  describe('#json()', function() {
+it('should raise error when missing option', function(done) {
+  should(function(){jedit();}).throw('missing "editor function" option');
+  done();
+});
 
-    //
-    // test: raise error when missing option
-    //
-    it('should raise error when missing option', function(done) {
-      (function() {
-        var stream = gulp.src('test/test.json').pipe(json());
-        stream.on('error', done);
-        stream.on('data', done);
-      }).should.throw('missing "editor function" option');
+
+it('should raise error when invalid type of option', function(done) {
+  should(function(){jedit(1);}).throw('"editor function" option must be function');
+  done();
+});
+
+
+it('should do path-through when input is null', function(done) {
+  jedit({})
+    .on('data',  function(file) {
+      should(file.contents).eql(null);
       done();
-    });
+    })
+    .write(new gutil.File({}));
+});
 
-    //
-    // test: raise error when invalid type of option
-    //
-    it('should raise error when invalid type of option', function(done) {
-      (function() {
-        var stream = gulp.src('test/test.json').pipe(json(100));
-        stream.on('error', done);
-        stream.on('data', done);
-      }).should.throw('"editor function" option must be function');
+
+it('should raise error when streaming input', function(done) {
+  jedit({})
+    .on('error', function(err) {
+      err.message.should.equal('Streaming is not supported');
       done();
-    });
-
-  });
+    })
+    .write(new gutil.File({
+      contents: fs.createReadStream('test/test.json')
+    }));
 });
