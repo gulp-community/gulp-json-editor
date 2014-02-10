@@ -24,8 +24,8 @@ module.exports = function (editor) {
   // check options
   if (typeof editor === 'function') editByXXX = editByFunction;
   else if (typeof editor === 'object') editByXXX = editByObject;
-  else if (typeof editor === 'undefined') throw new PluginError('gulp-json-editor', 'missing "editor function" option');
-  else throw new PluginError('gulp-json-editor', '"editor function" option must be function');
+  else if (typeof editor === 'undefined') throw new PluginError('gulp-json-editor', 'missing "editor" option');
+  else throw new PluginError('gulp-json-editor', '"editor" option must be a function or object');
 
   // create through object
   return through.obj(function (file, encoding, callback) {
