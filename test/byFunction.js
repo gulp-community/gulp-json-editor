@@ -14,17 +14,16 @@ it('should modify property of JSON object (by function editor)', function(done) 
   }));
 
   stream.on('data', function(file) {
-    var expected = JSON.parse(
-      '{' +
-      '  "name": "test object",' +
-      '  "version": "2.0.0",' +
-      '  "nested": {' +
-      '    "name": "nested object",' +
-      '    "version": "1.0.0"' +
-      '  }' +
+    var expected = 
+      '{\n' +
+      '  "name": "test object",\n' +
+      '  "version": "2.0.0",\n' +
+      '  "nested": {\n' +
+      '    "name": "nested object",\n' +
+      '    "version": "1.0.0"\n' +
+      '  }\n' +
       '}'
-    );
-    JSON.parse(file.contents).should.eql(expected);
+    file.contents.toString().should.eql(expected);
     done();
   });
 });
@@ -38,18 +37,17 @@ it('should add property of JSON object (by function editor)', function(done) {
   }));
 
   stream.on('data', function(file) {
-    var expected = JSON.parse(
-      '{' +
-      '  "name": "test object",' +
-      '  "version": "1.0.0",' +
-      '  "description": "this is test",' +
-      '  "nested": {' +
-      '    "name": "nested object",' +
-      '    "version": "1.0.0"' +
-      '  }' +
+    var expected =
+      '{\n' +
+      '  "name": "test object",\n' +
+      '  "version": "1.0.0",\n' +
+      '  "nested": {\n' +
+      '    "name": "nested object",\n' +
+      '    "version": "1.0.0"\n' +
+      '  },\n' +
+      '  "description": "this is test"\n' +
       '}'
-    );
-    JSON.parse(file.contents).should.eql(expected);
+    file.contents.toString().should.eql(expected);
     done();
   });
 });
@@ -63,16 +61,15 @@ it('should remove property of JSON object (by function editor)', function(done) 
   }));
 
   stream.on('data', function(file) {
-    var expected = JSON.parse(
-      '{' +
-      '  "version": "1.0.0",' +
-      '  "nested": {' +
-      '    "name": "nested object",' +
-      '    "version": "1.0.0"' +
-      '  }' +
+    var expected =
+      '{\n' +
+      '  "version": "1.0.0",\n' +
+      '  "nested": {\n' +
+      '    "name": "nested object",\n' +
+      '    "version": "1.0.0"\n' +
+      '  }\n' +
       '}'
-    );
-    JSON.parse(file.contents).should.eql(expected);
+    file.contents.toString().should.eql(expected);
     done();
   });
 });
@@ -86,17 +83,16 @@ it('should modify nested property of JSON object (by function editor)', function
   }));
 
   stream.on('data', function(file) {
-    var expected = JSON.parse(
-      '{' +
-      '  "name": "test object",' +
-      '  "version": "1.0.0",' +
-      '  "nested": {' +
-      '    "name": "nested object",' +
-      '    "version": "2.0.1"' +
-      '  }' +
+    var expected =
+      '{\n' +
+      '  "name": "test object",\n' +
+      '  "version": "1.0.0",\n' +
+      '  "nested": {\n' +
+      '    "name": "nested object",\n' +
+      '    "version": "2.0.1"\n' +
+      '  }\n' +
       '}'
-    );
-    JSON.parse(file.contents).should.eql(expected);
+    file.contents.toString().should.eql(expected);
     done();
   });
 });
@@ -110,18 +106,17 @@ it('should add nested property of JSON object (by function editor)', function(do
   }));
 
   stream.on('data', function(file) {
-    var expected = JSON.parse(
-      '{' +
-      '  "name": "test object",' +
-      '  "version": "1.0.0",' +
-      '  "nested": {' +
-      '    "name": "nested object",' +
-      '    "version": "1.0.0",' +
-      '    "description": "this is test for nested"' +
-      '  }' +
+    var expected =
+      '{\n' +
+      '  "name": "test object",\n' +
+      '  "version": "1.0.0",\n' +
+      '  "nested": {\n' +
+      '    "name": "nested object",\n' +
+      '    "version": "1.0.0",\n' +
+      '    "description": "this is test for nested"\n' +
+      '  }\n' +
       '}'
-    );
-    JSON.parse(file.contents).should.eql(expected);
+    file.contents.toString().should.eql(expected);
     done();
   });
 });
@@ -135,16 +130,15 @@ it('should remove nested property of JSON object (by function editor)', function
   }));
 
   stream.on('data', function(file) {
-    var expected = JSON.parse(
-      '{' +
-      '  "name": "test object",' +
-      '  "version": "1.0.0",' +
-      '  "nested": {' +
-      '    "version": "1.0.0"' +
-      '  }' +
+    var expected =
+      '{\n' +
+      '  "name": "test object",\n' +
+      '  "version": "1.0.0",\n' +
+      '  "nested": {\n' +
+      '    "version": "1.0.0"\n' +
+      '  }\n' +
       '}'
-    );
-    JSON.parse(file.contents).should.eql(expected);
+    file.contents.toString().should.eql(expected);
     done();
   });
 });
@@ -163,17 +157,16 @@ it('should multiple properties of JSON object (by function editor)', function(do
   }));
 
   stream.on('data', function(file) {
-    var expected = JSON.parse(
-      '{' +
-      '  "version": "2.0.0",' +
-      '  "description": "this is test",' +
-      '  "nested": {' +
-      '    "version": "2.0.1",' +
-      '    "description": "this is test for nested"' +
-      '  }' +
+    var expected =
+      '{\n' +
+      '  "version": "2.0.0",\n' +
+      '  "nested": {\n' +
+      '    "version": "2.0.1",\n' +
+      '    "description": "this is test for nested"\n' +
+      '  },\n' +
+      '  "description": "this is test"\n' +
       '}'
-    );
-    JSON.parse(file.contents).should.eql(expected);
+    file.contents.toString().should.eql(expected);
     done();
   });
 });

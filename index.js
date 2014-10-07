@@ -5,10 +5,10 @@ var merge       = require('deepmerge');
 var through     = require('through2');
 var PluginError = require('gulp-util').PluginError;
 
-module.exports = function (editor) {
+module.exports = function (editor, jsbeautifyOption) {
 
   /*
-   editor type option
+   create 'editBy' function from 'editor'
    */
   var editBy;
   if (typeof editor === 'function') {
@@ -29,10 +29,15 @@ module.exports = function (editor) {
   /*
    js-beautify option
    */
-  var beautify = true; // always beautify output
-  var indentSize = 2;
-  var indentChar = ' ';
-  var wrapLineLength = 0;
+  jsbeautifyOption = jsbeautifyOption || {};
+
+  // always beautify output
+  var beautify = true;
+
+  // set default value for backword compatibility
+  jsbeautifyOption.indent_size = jsbeautifyOption.indent_size || 2;
+  jsbeautifyOption.indent_char = jsbeautifyOption.indent_char || ' ';
+  jsbeautifyOption.brace_style = jsbeautifyOption.brace_style || 'collapse';
 
   /*
    create through object and return it
@@ -57,13 +62,7 @@ module.exports = function (editor) {
 
       // beautify JSON
       if (beautify) {
-        json = jsbeautify(json, {
-          'indent_size':      indentSize,
-          'indent_char':      indentChar,
-          'indent_level':     0,
-          'brace_style':      'collapse',
-          'wrap_line_length': wrapLineLength
-        });
+        json = jsbeautify(json, jsbeautifyOption);
       }
 
       // write it to file
