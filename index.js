@@ -7,27 +7,36 @@ var PluginError = require('gulp-util').PluginError;
 
 module.exports = function (editor) {
 
-  // edit JSON object by user specific function
-  function editByFunction(json) {
-    return JSON.stringify(editor(json));
+  /*
+   editor type option
+   */
+  var editBy;
+  if (typeof editor === 'function') {
+    // edit JSON object by user specific function
+    editBy = function(json) { return JSON.stringify(editor(json)); };
+  }
+  else if (typeof editor === 'object') {
+    // edit JSON object by merging with user specific object
+    editBy = function(json) { return JSON.stringify(merge(json, editor)); };
+  }
+  else if (typeof editor === 'undefined') {
+    throw new PluginError('gulp-json-editor', 'missing "editor" option');
+  }
+  else {
+    throw new PluginError('gulp-json-editor', '"editor" option must be a function or object');
   }
 
-  // edit JSON object by merging with user specific object
-  function editByObject(json) {
-    return JSON.stringify(merge(json, editor));
-  }
+  /*
+   js-beautify option
+   */
+  var beautify = true; // always beautify output
+  var indentSize = 2;
+  var indentChar = ' ';
+  var wrapLineLength = 0;
 
-  // always beautify output
-  var beautify = true;
-  var editByXXX;
-
-  // check options
-  if (typeof editor === 'function') editByXXX = editByFunction;
-  else if (typeof editor === 'object') editByXXX = editByObject;
-  else if (typeof editor === 'undefined') throw new PluginError('gulp-json-editor', 'missing "editor" option');
-  else throw new PluginError('gulp-json-editor', '"editor" option must be a function or object');
-
-  // create through object
+  /*
+   create through object and return it
+   */
   return through.obj(function (file, encoding, callback) {
 
     // ignore it
@@ -42,23 +51,28 @@ module.exports = function (editor) {
       return callback();
     }
 
-    // edit JSON object
     try {
-      var json = editByXXX(JSON.parse(file.contents.toString('utf8')));
+      // edit JSON object and get it as string notation
+      var json = editBy(JSON.parse(file.contents.toString('utf8')));
+
+      // beautify JSON
       if (beautify) {
         json = jsbeautify(json, {
-          'indent_with_tabs': false,
-          'indent_size':      2,
-          'indent_char':      ' ',
+          'indent_size':      indentSize,
+          'indent_char':      indentChar,
           'indent_level':     0,
-          'brace_style':      'collapse'
+          'brace_style':      'collapse',
+          'wrap_line_length': wrapLineLength
         });
       }
+
+      // write it to file
       file.contents = new Buffer(json);
     }
     catch (err) {
       this.emit('error', new PluginError('gulp-json-editor', err));
     }
+
     this.push(file);
     callback();
 
