@@ -44,24 +44,24 @@ gulp.src("./manifest.json")
 In case of such above situation, all of comment and whitespace in source file is **NOT** kept in destination file.
 
 ## API
-### jeditor(editorObject, [jsBeautifyOption])
+### jeditor(editorObject, [jsBeautifyOptions])
 #### editorObject
 Type: `JSON object`
 
 JSON object to merge with.
 
-#### jsBeautifyOption
+#### jsBeautifyOptions
 Type: `object`
 
 This object is passed to js-beautify as its option.
 
-### jeditor(editorFunction, [jsBeautifyOption])
+### jeditor(editorFunction, [jsBeautifyOptions])
 #### editorFunction
 Type: `function`
 
 The `editorFunction` must have the following signature: `function (json) {}`, and must return JSON object.
 
-#### jsBeautifyOption
+#### jsBeautifyOptions
 Type: `object`
 
 This object is passed to js-beautify as its option.
