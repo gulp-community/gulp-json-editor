@@ -49,7 +49,7 @@ module.exports = function (editor, jsbeautifyOptions) {
 
     try {
       // try to get current indentation
-      indent = detectIndent(file.contents.toString('utf8'));
+      var indent = detectIndent(file.contents.toString('utf8'));
 
       // beautify options for this particular file
       var beautifyOptions = jsbeautifyOptions || {};
