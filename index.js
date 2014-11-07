@@ -14,11 +14,11 @@ module.exports = function (editor, jsbeautifyOptions) {
   var editBy;
   if (typeof editor === 'function') {
     // edit JSON object by user specific function
-    editBy = function(json) { return JSON.stringify(editor(json)); };
+    editBy = function(json) { return editor(json); };
   }
   else if (typeof editor === 'object') {
     // edit JSON object by merging with user specific object
-    editBy = function(json) { return JSON.stringify(merge(json, editor)); };
+    editBy = function(json) { return merge(json, editor); };
   }
   else if (typeof editor === 'undefined') {
     throw new PluginError('gulp-json-editor', 'missing "editor" option');
@@ -26,6 +26,11 @@ module.exports = function (editor, jsbeautifyOptions) {
   else {
     throw new PluginError('gulp-json-editor', '"editor" option must be a function or object');
   }
+
+  /*
+   js-beautify option
+   */
+  jsbeautifyOptions = jsbeautifyOptions || {};
 
   // always beautify output
   var beautify = true;
@@ -52,13 +57,12 @@ module.exports = function (editor, jsbeautifyOptions) {
       var indent = detectIndent(file.contents.toString('utf8'));
 
       // beautify options for this particular file
-      var beautifyOptions = jsbeautifyOptions || {};
+      var beautifyOptions = merge({}, jsbeautifyOptions); // make copy
       beautifyOptions.indent_size = beautifyOptions.indent_size || indent.amount || 2;
       beautifyOptions.indent_char = beautifyOptions.indent_char || (indent.type === 'tab' ? '\t' : ' ');
-      beautifyOptions.brace_style = beautifyOptions.brace_style || 'collapse';
 
       // edit JSON object and get it as string notation
-      var json = editBy(JSON.parse(file.contents.toString('utf8')));
+      var json = JSON.stringify(editBy(JSON.parse(file.contents.toString('utf8'))), null, indent.indent);
 
       // beautify JSON
       if (beautify) {

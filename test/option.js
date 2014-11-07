@@ -23,6 +23,7 @@ it('should pass-through second argument to js-beautify', function(done) {
     'indent_size':      3,
     'indent_char':      '\t',
     'brace_style':      'expand',
+    'preserve_newlines' : false,
     'wrap_line_length': 80
   }));
 
@@ -41,7 +42,7 @@ it('should pass-through second argument to js-beautify', function(done) {
       '\t\t\t"array": ["1234567890", "1234567890", "1234567890", "1234567890",\n' +
       '\t\t\t\t\t\t"1234567890", "1234567890", "1234567890", "1234567890"\n' +
       '\t\t\t]\n' +
-      '}'
+      '}';
 
     file.contents.toString().should.eql(expected);
     done();
