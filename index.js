@@ -4,6 +4,7 @@ var jsbeautify  = require('js-beautify').js_beautify;
 var merge       = require('deepmerge');
 var through     = require('through2');
 var PluginError = require('gulp-util').PluginError;
+var detectIndent = require('detect-indent');
 
 module.exports = function (editor, jsbeautifyOptions) {
 
@@ -26,18 +27,8 @@ module.exports = function (editor, jsbeautifyOptions) {
     throw new PluginError('gulp-json-editor', '"editor" option must be a function or object');
   }
 
-  /*
-   js-beautify option
-   */
-  jsbeautifyOptions = jsbeautifyOptions || {};
-
   // always beautify output
   var beautify = true;
-
-  // set default value for backword compatibility
-  jsbeautifyOptions.indent_size = jsbeautifyOptions.indent_size || 2;
-  jsbeautifyOptions.indent_char = jsbeautifyOptions.indent_char || ' ';
-  jsbeautifyOptions.brace_style = jsbeautifyOptions.brace_style || 'collapse';
 
   /*
    create through object and return it
@@ -57,12 +48,21 @@ module.exports = function (editor, jsbeautifyOptions) {
     }
 
     try {
+      // try to get current indentation
+      indent = detectIndent(file.contents.toString('utf8'));
+
+      // beautify options for this particular file
+      var beautifyOptions = jsbeautifyOptions || {};
+      beautifyOptions.indent_size = beautifyOptions.indent_size || indent.amount || 2;
+      beautifyOptions.indent_char = beautifyOptions.indent_char || (indent.type === 'tab' ? '\t' : ' ');
+      beautifyOptions.brace_style = beautifyOptions.brace_style || 'collapse';
+
       // edit JSON object and get it as string notation
       var json = editBy(JSON.parse(file.contents.toString('utf8')));
 
       // beautify JSON
       if (beautify) {
-        json = jsbeautify(json, jsbeautifyOptions);
+        json = jsbeautify(json, beautifyOptions);
       }
 
       // write it to file

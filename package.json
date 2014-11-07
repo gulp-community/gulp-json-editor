@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "gulp-util": "~3.0.0",
+    "detect-indent": "^2.0.0",
     "through2": "~0.5.0",
     "js-beautify": "~1.5.4",
     "deepmerge": "~0.2.7"
