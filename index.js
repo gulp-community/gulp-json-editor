@@ -4,6 +4,7 @@ var jsbeautify  = require('js-beautify').js_beautify;
 var merge       = require('deepmerge');
 var through     = require('through2');
 var PluginError = require('gulp-util').PluginError;
+var detectIndent = require('detect-indent');
 
 module.exports = function (editor, jsbeautifyOptions) {
 
@@ -13,11 +14,11 @@ module.exports = function (editor, jsbeautifyOptions) {
   var editBy;
   if (typeof editor === 'function') {
     // edit JSON object by user specific function
-    editBy = function(json) { return JSON.stringify(editor(json)); };
+    editBy = function(json) { return editor(json); };
   }
   else if (typeof editor === 'object') {
     // edit JSON object by merging with user specific object
-    editBy = function(json) { return JSON.stringify(merge(json, editor)); };
+    editBy = function(json) { return merge(json, editor); };
   }
   else if (typeof editor === 'undefined') {
     throw new PluginError('gulp-json-editor', 'missing "editor" option');
@@ -33,11 +34,6 @@ module.exports = function (editor, jsbeautifyOptions) {
 
   // always beautify output
   var beautify = true;
-
-  // set default value for backword compatibility
-  jsbeautifyOptions.indent_size = jsbeautifyOptions.indent_size || 2;
-  jsbeautifyOptions.indent_char = jsbeautifyOptions.indent_char || ' ';
-  jsbeautifyOptions.brace_style = jsbeautifyOptions.brace_style || 'collapse';
 
   /*
    create through object and return it
@@ -57,12 +53,20 @@ module.exports = function (editor, jsbeautifyOptions) {
     }
 
     try {
+      // try to get current indentation
+      var indent = detectIndent(file.contents.toString('utf8'));
+
+      // beautify options for this particular file
+      var beautifyOptions = merge({}, jsbeautifyOptions); // make copy
+      beautifyOptions.indent_size = beautifyOptions.indent_size || indent.amount || 2;
+      beautifyOptions.indent_char = beautifyOptions.indent_char || (indent.type === 'tab' ? '\t' : ' ');
+
       // edit JSON object and get it as string notation
-      var json = editBy(JSON.parse(file.contents.toString('utf8')));
+      var json = JSON.stringify(editBy(JSON.parse(file.contents.toString('utf8'))), null, indent.indent);
 
       // beautify JSON
       if (beautify) {
-        json = jsbeautify(json, jsbeautifyOptions);
+        json = jsbeautify(json, beautifyOptions);
       }
 
       // write it to file
