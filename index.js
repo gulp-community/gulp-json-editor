@@ -32,9 +32,6 @@ module.exports = function (editor, jsbeautifyOptions) {
    */
   jsbeautifyOptions = jsbeautifyOptions || {};
 
-  // always beautify output
-  var beautify = true;
-
   /*
    create through object and return it
    */
@@ -60,12 +57,13 @@ module.exports = function (editor, jsbeautifyOptions) {
       var beautifyOptions = merge({}, jsbeautifyOptions); // make copy
       beautifyOptions.indent_size = beautifyOptions.indent_size || indent.amount || 2;
       beautifyOptions.indent_char = beautifyOptions.indent_char || (indent.type === 'tab' ? '\t' : ' ');
+      beautifyOptions.beautify = !('beautify' in beautifyOptions && !beautifyOptions.beautify);
 
       // edit JSON object and get it as string notation
-      var json = JSON.stringify(editBy(JSON.parse(file.contents.toString('utf8'))), null, indent.indent);
+      var json = JSON.stringify(editBy(JSON.parse(file.contents.toString('utf8'))));
 
       // beautify JSON
-      if (beautify) {
+      if (beautifyOptions.beautify) {
         json = jsbeautify(json, beautifyOptions);
       }
 
