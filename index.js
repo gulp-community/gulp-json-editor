@@ -3,7 +3,7 @@
 var jsbeautify   = require('js-beautify').js_beautify;
 var merge        = require('deepmerge');
 var through      = require('through2');
-var PluginError  = require('gulp-util').PluginError;
+var PluginError  = require('plugin-error');
 var detectIndent = require('detect-indent');
 
 module.exports = function (editor, jsbeautifyOptions) {

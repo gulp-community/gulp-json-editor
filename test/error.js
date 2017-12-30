@@ -2,8 +2,8 @@
 /* global it */
 
 var jedit  = require('../');
-var gutil  = require('gulp-util');
 var fs     = require('fs');
+var File   = require('vinyl');
 var should = require('should');
 require('mocha');
 
@@ -25,7 +25,7 @@ it('should do path-through when input is null', function(done) {
       should(file.contents).eql(null);
       done();
     })
-    .write(new gutil.File({}));
+    .write(new File({}));
 });
 
 
@@ -35,7 +35,7 @@ it('should raise error when streaming input', function(done) {
       err.message.should.equal('Streaming is not supported');
       done();
     })
-    .write(new gutil.File({
+    .write(new File({
       contents: fs.createReadStream('test/test.json')
     }));
 });
