@@ -3,22 +3,21 @@
   "version": "2.2.1",
   "description": "A gulp plugin to edit JSON object",
   "license": "MIT",
+  "main": "./index.js",
+  "homepage": "https://github.com/rejas/gulp-json-editor",
+  "bugs": "https://github.com/rejas/gulp-json-editor/issues",
+  "author": {
+    "name": "Veeck",
+    "url": "https://github.com/rejas"
+  },
   "keywords": [
     "gulpplugin",
     "gulp",
     "json"
   ],
-  "homepage": "https://github.com/morou/gulp-json-editor",
-  "bugs": "https://github.com/morou/gulp-json-editor/issues",
-  "author": {
-    "name": "Kazuhiro Nakae",
-    "email": "kazuhiro.nakae@gmail.com",
-    "url": "https://github.com/morou"
-  },
-  "main": "./index.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/morou/gulp-json-editor.git"
+    "url": "git://github.com/rejas/gulp-json-editor.git"
   },
   "scripts": {
     "test": "mocha"
