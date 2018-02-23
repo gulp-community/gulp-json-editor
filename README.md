@@ -1,6 +1,6 @@
 # gulp-json-editor
 
-gulp-json-editor is a [gulp](https://github.com/wearefractal/gulp) plugin to edit JSON object.
+gulp-json-editor is a [gulp](https://github.com/gulpjs/gulp) plugin to edit JSON object.
 
 ## Usage
 ```javascript
