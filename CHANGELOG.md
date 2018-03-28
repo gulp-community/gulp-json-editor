@@ -1,3 +1,9 @@
+## 2.3.0
+
+### Added
+
+  - New option 'beautify' (default: true) to disable beautification if necessary
+
 ## 2.2.2
 
 ### Fixed
