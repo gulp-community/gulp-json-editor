@@ -46,6 +46,20 @@ gulp.src("./manifest.json")
 ### Note
 In case of such above situation, all of comment and whitespace in source file is **NOT** kept in destination file.
 
+### Disable beautification
+
+```javascript
+gulp.src("./manifest.json")
+  .pipe(jeditor({
+    'version': '1.2.3'
+  },
+  {
+    beautify: false
+  }))
+  .pipe(gulp.dest("./dest"));
+```
+
+
 ## API
 ### jeditor(editorObject, [jsBeautifyOptions])
 #### editorObject
