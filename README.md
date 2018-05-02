@@ -3,7 +3,7 @@
 [![Greenkeeper badge](https://badges.greenkeeper.io/rejas/gulp-json-editor.svg)](https://greenkeeper.io/)
 [![Build Status](https://secure.travis-ci.org/rejas/gulp-json-editor.png?branch=master)](https://travis-ci.org/rejas/gulp-json-editor)
 
-gulp-json-editor is a [gulp](https://github.com/gulpjs/gulp) plugin to edit JSON object.
+gulp-json-editor is a [gulp](https://github.com/gulpjs/gulp) plugin to edit JSON objects.
 
 ## Usage
 ```javascript
