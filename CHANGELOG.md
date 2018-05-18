@@ -1,3 +1,9 @@
+## 2.4.1
+
+### Changed
+
+  - Don't include .idea files in npm tarball
+
 ## 2.4.0
 
 ### Fixed
