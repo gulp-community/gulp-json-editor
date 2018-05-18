@@ -68,7 +68,7 @@ module.exports = function (editor, jsbeautifyOptions) {
       }
 
       // write it to file
-      file.contents = new Buffer(json);
+      file.contents = Buffer.from(json);
     }
     catch (err) {
       this.emit('error', new PluginError('gulp-json-editor', err));
