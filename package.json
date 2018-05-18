@@ -6,6 +6,7 @@
   "main": "./index.js",
   "homepage": "https://github.com/rejas/gulp-json-editor#readme",
   "bugs": "https://github.com/rejas/gulp-json-editor/issues",
+  "repository": "https://github.com/rejas/gulp-json-editor.git",
   "author": {
     "name": "rejas",
     "url": "https://github.com/rejas"
@@ -23,15 +24,14 @@
     "should": "^13.2.1",
     "vinyl": "^2.1.0"
   },
+  "engines": {
+    "node": ">=6"
+  },
   "keywords": [
     "gulpplugin",
     "gulp",
     "json"
   ],
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/rejas/gulp-json-editor.git"
-  },
   "scripts": {
     "test": "mocha"
   }
