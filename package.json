@@ -12,7 +12,7 @@
     "url": "https://github.com/rejas"
   },
   "dependencies": {
-    "deepmerge": "^2.1.0",
+    "deepmerge": "^2.1.1",
     "detect-indent": "^5.0.0",
     "js-beautify": "^1.7.5",
     "plugin-error": "^1.0.1",
@@ -20,9 +20,9 @@
   },
   "devDependencies": {
     "gulp": "^4.0.0",
-    "mocha": "^5.1.1",
+    "mocha": "^5.2.0",
     "should": "^13.2.1",
-    "vinyl": "^2.1.0"
+    "vinyl": "^2.2.0"
   },
   "engines": {
     "node": ">=6"
