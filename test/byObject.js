@@ -1,10 +1,5 @@
-/* jshint node: true */
-/* global it */
-
 var json   = require('../');
-var gulp   = require("gulp");
-require('should');
-require('mocha');
+var gulp   = require('gulp');
 
 it('should modify property of JSON object (by object editor)', function(done) {
 
@@ -21,7 +16,7 @@ it('should modify property of JSON object (by object editor)', function(done) {
       '    "name": "nested object",\n' +
       '    "version": "1.0.0"\n' +
       '  }\n' +
-      '}'
+      '}';
     file.contents.toString().should.eql(expected);
     done();
   });
@@ -44,7 +39,7 @@ it('should add property of JSON object (by object editor)', function(done) {
       '    "version": "1.0.0"\n' +
       '  },\n' +
       '  "description": "this is test"\n' +
-      '}'
+      '}';
     file.contents.toString().should.eql(expected);
     done();
   });
@@ -68,7 +63,7 @@ it('should modify nested property of JSON object (by object editor)', function(d
       '    "name": "nested object",\n' +
       '    "version": "2.0.1"\n' +
       '  }\n' +
-      '}'
+      '}';
     file.contents.toString().should.eql(expected);
     done();
   });
@@ -93,7 +88,7 @@ it('should add nested property of JSON object (by object editor)', function(done
       '    "version": "1.0.0",\n' +
       '    "description": "this is test for nested"\n' +
       '  }\n' +
-      '}'
+      '}';
     file.contents.toString().should.eql(expected);
     done();
   });
@@ -122,7 +117,7 @@ it('should multiple properties of JSON object (by object editor)', function(done
       '    "description": "this is test for nested"\n' +
       '  },\n' +
       '  "description": "this is test"\n' +
-      '}'
+      '}';
     file.contents.toString().should.eql(expected);
     done();
   });

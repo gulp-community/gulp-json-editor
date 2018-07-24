@@ -1,11 +1,7 @@
-/* jshint node: true */
-/* global it */
-
 var jedit  = require('../');
 var fs     = require('fs');
 var File   = require('vinyl');
 var should = require('should');
-require('mocha');
 
 it('should raise error when missing option', function(done) {
   should(function(){jedit();}).throw('missing "editor" option');

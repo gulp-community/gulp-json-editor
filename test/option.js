@@ -1,10 +1,5 @@
-/* jshint node: true */
-/* global it */
-
 var json   = require('../');
-var gulp   = require("gulp");
-require('should');
-require('mocha');
+var gulp   = require('gulp');
 
 it('should pass-through second argument to js-beautify', function(done) {
 
