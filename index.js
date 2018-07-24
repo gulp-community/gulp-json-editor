@@ -1,5 +1,3 @@
-/* jshint node: true */
-
 var jsbeautify   = require('js-beautify').js_beautify;
 var merge        = require('deepmerge');
 var through      = require('through2');
@@ -9,7 +7,7 @@ var detectIndent = require('detect-indent');
 module.exports = function (editor, jsbeautifyOptions) {
 
   /*
-   create 'editBy' function from 'editor'
+   * create 'editBy' function from 'editor'
    */
   var editBy;
   if (typeof editor === 'function') {
@@ -28,12 +26,12 @@ module.exports = function (editor, jsbeautifyOptions) {
   }
 
   /*
-   js-beautify option
+   * js-beautify options
    */
   jsbeautifyOptions = jsbeautifyOptions || {};
 
   /*
-   create through object and return it
+   * create through object and return it
    */
   return through.obj(function (file, encoding, callback) {
 
@@ -78,5 +76,4 @@ module.exports = function (editor, jsbeautifyOptions) {
     callback();
 
   });
-
 };
