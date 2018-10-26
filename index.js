@@ -74,6 +74,5 @@ module.exports = function (editor, jsbeautifyOptions) {
 
     this.push(file);
     callback();
-
   });
 };

@@ -9,7 +9,7 @@ it('should modify property of JSON object (by function editor)', function(done) 
   }));
 
   stream.on('data', function(file) {
-    var expected = 
+    var expected =
       '{\n' +
       '  "name": "test object",\n' +
       '  "version": "2.0.0",\n' +

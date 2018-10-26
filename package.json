@@ -19,6 +19,8 @@
     "through2": "^2.0.3"
   },
   "devDependencies": {
+    "eslint": "^5.8.0",
+    "eslint-config-gulp": "^3.0.1",
     "gulp": "^4.0.0",
     "mocha": "^5.2.0",
     "should": "^13.2.1",
@@ -33,6 +35,7 @@
     "json"
   ],
   "scripts": {
+    "lint": "eslint --fix **/*.js",
     "test": "mocha"
   }
 }

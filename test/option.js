@@ -7,19 +7,19 @@ it('should pass-through second argument to js-beautify', function(done) {
     version: '2.0.0',
     description: 'this is test',
     array: [
-      '1234567890', '1234567890', '1234567890', '1234567890', '1234567890', '1234567890', '1234567890', '1234567890'
+      '1234567890', '1234567890', '1234567890', '1234567890', '1234567890', '1234567890', '1234567890', '1234567890',
     ],
     nested: {
       version: '2.0.1',
-      description: 'this is test for nested'
-    }
+      description: 'this is test for nested',
+    },
   },
   {
-    'indent_size':      3,
-    'indent_char':      '\t',
-    'brace_style':      'expand',
-    'preserve_newlines' : false,
-    'wrap_line_length': 80
+    indent_size: 3,
+    indent_char: '\t',
+    brace_style: 'expand',
+    preserve_newlines: false,
+    wrap_line_length: 80,
   }));
 
   stream.on('data', function(file) {
@@ -51,17 +51,17 @@ it('should keep indentation', function(done) {
     version: '2.0.0',
     description: 'this is test',
     array: [
-      '1234567890', '1234567890', '1234567890', '1234567890', '1234567890', '1234567890', '1234567890', '1234567890'
+      '1234567890', '1234567890', '1234567890', '1234567890', '1234567890', '1234567890', '1234567890', '1234567890',
     ],
     nested: {
       version: '2.0.1',
-      description: 'this is test for nested'
-    }
+      description: 'this is test for nested',
+    },
   },
   {
-    'brace_style':      'expand',
-    'preserve_newlines' : false,
-    'wrap_line_length': 80
+    brace_style: 'expand',
+    preserve_newlines: false,
+    wrap_line_length: 80,
   }));
 
   stream.on('data', function(file) {
@@ -89,19 +89,19 @@ it('should keep indentation', function(done) {
 it('should bypass beautification when property is set', function(done) {
 
   var stream = gulp.src('test/test.json').pipe(json({
-        version: '2.0.0',
-        description: 'this is test',
-        array: [
-          '1234567890', '1234567890', '1234567890', '1234567890', '1234567890', '1234567890', '1234567890', '1234567890'
-        ],
-        nested: {
-          version: '2.0.1',
-          description: 'this is test for nested'
-        }
-      },
-      {
-        beautify: false
-      }));
+    version: '2.0.0',
+    description: 'this is test',
+    array: [
+      '1234567890', '1234567890', '1234567890', '1234567890', '1234567890', '1234567890', '1234567890', '1234567890',
+    ],
+    nested: {
+      version: '2.0.1',
+      description: 'this is test for nested',
+    },
+  },
+  {
+    beautify: false,
+  }));
 
   stream.on('data', function(file) {
     var expected = '{"name":"test object","version":"2.0.0","nested":{"name":"nested object","version":"2.0.1","description":"this is test for nested"},"description":"this is test","array":["1234567890","1234567890","1234567890","1234567890","1234567890","1234567890","1234567890","1234567890"]}';
