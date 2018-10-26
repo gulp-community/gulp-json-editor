@@ -14,7 +14,7 @@
 
 ### Fixed
 
-  - #19 Replace deprecated Buffer() constructor (https://medium.com/@jasnell/node-js-buffer-api-changes-3c21f1048f97)
+  - Replace deprecated Buffer() constructor (https://medium.com/@jasnell/node-js-buffer-api-changes-3c21f1048f97) (#19) 
 
 ### Changed
 
@@ -30,7 +30,7 @@
 
 ### Fixed
 
-  - #15 Replace deprecated gulp-util
+  - Replace deprecated gulp-util (#15)
 
 ### Changed
 
