@@ -1,3 +1,10 @@
+## 2.4.3
+
+### Changed
+
+  - Switch to eslint
+  - Update dependencies
+  
 ## 2.4.2
 
 ### Changed
