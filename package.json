@@ -12,7 +12,7 @@
     "url": "https://github.com/rejas"
   },
   "dependencies": {
-    "deepmerge": "^2.2.1",
+    "deepmerge": "^3.0.0",
     "detect-indent": "^5.0.0",
     "js-beautify": "^1.8.8",
     "plugin-error": "^1.0.1",
