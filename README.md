@@ -41,6 +41,21 @@ gulp.src("./manifest.json")
     'indent_size': 1
   }))
   .pipe(gulp.dest("./dest"));
+
+/*
+  Array merge overwriteMerge option
+*/
+gulp.src("./manifest.json")
+  .pipe(jeditor({ 
+    "authors": ["tomcat"] 
+  },
+  // the second argument is passed to js-beautify as its option
+  {},
+  // the third argument is passed to merge options, eg, arrayMerge options
+  { 
+    arrayMerge: function (dist,source,options) {return source;} 
+  }))
+  .pipe(gulp.dest("./dest"));
 ```
 
 ### Note
