@@ -1,3 +1,13 @@
+## 2.5.0
+
+### Added
+
+  - Add ability to pass options to deepmerge (#25 by @buuug7)
+
+### Changed
+
+  - Update dependencies
+  
 ## 2.4.4
 
 ### Changed
