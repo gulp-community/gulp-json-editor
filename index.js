@@ -1,17 +1,15 @@
 var jsbeautify   = require('js-beautify').js_beautify;
-var merge        = require('deepmerge');
+var deepmerge    = require('deepmerge');
 var through      = require('through2');
 var PluginError  = require('plugin-error');
 var detectIndent = require('detect-indent');
 
-module.exports = function (editor, jsbeautifyOptions, mergeOptions) {
-
+module.exports = function (editor, jsbeautifyOptions, deepmergeOptions) {
 
   /*
-   * extras merge options
-   * this options is only pass to deepmerge
+   * deepmerge options
    */
-   mergeOptions = mergeOptions || {};
+   deepmergeOptions = deepmergeOptions || {};
 
   /*
    * create 'editBy' function from 'editor'
@@ -23,7 +21,7 @@ module.exports = function (editor, jsbeautifyOptions, mergeOptions) {
   }
   else if (typeof editor === 'object') {
     // edit JSON object by merging with user specific object
-    editBy = function(json) { return merge(json, editor, mergeOptions); };
+    editBy = function(json) { return deepmerge(json, editor, deepmergeOptions); };
   }
   else if (typeof editor === 'undefined') {
     throw new PluginError('gulp-json-editor', 'missing "editor" option');
@@ -59,7 +57,7 @@ module.exports = function (editor, jsbeautifyOptions, mergeOptions) {
       var indent = detectIndent(file.contents.toString('utf8'));
 
       // beautify options for this particular file
-      var beautifyOptions = merge({}, jsbeautifyOptions); // make copy
+      var beautifyOptions = deepmerge({}, jsbeautifyOptions); // make copy
       beautifyOptions.indent_size = beautifyOptions.indent_size || indent.amount || 2;
       beautifyOptions.indent_char = beautifyOptions.indent_char || (indent.type === 'tab' ? '\t' : ' ');
       beautifyOptions.beautify = !('beautify' in beautifyOptions && !beautifyOptions.beautify);

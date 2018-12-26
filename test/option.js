@@ -113,17 +113,17 @@ it('should bypass beautification when property is set', function(done) {
 });
 
 
-it('should merged with arrayMerge of overwriteMerge', function (done) {
+it('should pass-through third argument to deepmerge and do an overwriteMerge', function(done) {
 
   var stream = gulp.src('test/test.json').pipe(json({
-    "authors": ["tomcat"]
+    authors: ['tomcat'],
   },{},{
-    arrayMerge: function (dist,source,options) {
+    arrayMerge: function(dist,source,options) {
       return source;
-    }
+    },
   }));
 
-  stream.on('data', function (file) {
+  stream.on('data', function(file) {
     var expected =
        '{\n' +
        '  "name": "test object",\n' +
