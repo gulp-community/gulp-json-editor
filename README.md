@@ -29,7 +29,7 @@ gulp.src("./manifest.json")
   .pipe(gulp.dest("./dest"));
 
 /*
-  specify js-beautify option
+  specify [js-beautify](https://github.com/beautify-web/js-beautify) option
 */
 gulp.src("./manifest.json")
   .pipe(jeditor({
@@ -43,8 +43,7 @@ gulp.src("./manifest.json")
   .pipe(gulp.dest("./dest"));
 
 /*
-  The merge options passed to [deepmerge](https://github.com/TehShrike/deepmerge#options).
-  For example: array merge overwriteMerge option
+  specify [deepmerge](https://github.com/TehShrike/deepmerge) option
 */
 gulp.src("./manifest.json")
   .pipe(jeditor({ 
@@ -77,7 +76,7 @@ gulp.src("./manifest.json")
 
 
 ## API
-### jeditor(editorObject, [jsBeautifyOptions], [mergeOptions])
+### jeditor(editorObject, [jsBeautifyOptions], [deepmergeOptions])
 #### editorObject
 Type: `JSON object`
 
@@ -88,12 +87,12 @@ Type: `object`
 
 This object is passed to js-beautify as its option.
 
-#### mergeOptions
+#### deepmergeOptions
 Type: `object`
 
-The merge options passed to [deepmerge](https://github.com/TehShrike/deepmerge#options).
+This object is passed to deepmerge as its [option](https://github.com/TehShrike/deepmerge#options).
 
-### jeditor(editorFunction, [jsBeautifyOptions])
+### jeditor(editorFunction, [jsBeautifyOptions], [deepmergeOptions])
 #### editorFunction
 Type: `function`
 
@@ -103,6 +102,11 @@ The `editorFunction` must have the following signature: `function (json) {}`, an
 Type: `object`
 
 This object is passed to js-beautify as its option.
+
+#### deepmergeOptions
+Type: `object`
+
+This object is passed to deepmerge as its [option](https://github.com/TehShrike/deepmerge#options).
 
 ## License
 [MIT License](http://en.wikipedia.org/wiki/MIT_License)
