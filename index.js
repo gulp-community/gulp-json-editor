@@ -6,6 +6,11 @@ var detectIndent = require('detect-indent');
 
 module.exports = function (editor, jsbeautifyOptions, mergeOptions) {
 
+
+  /*
+   * extras merge options
+   * this options is only pass to deepmerge
+   */
    mergeOptions = mergeOptions || {};
 
   /*
