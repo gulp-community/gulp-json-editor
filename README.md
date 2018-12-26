@@ -41,6 +41,22 @@ gulp.src("./manifest.json")
     'indent_size': 1
   }))
   .pipe(gulp.dest("./dest"));
+
+/*
+  The merge options passed to [deepmerge](https://github.com/TehShrike/deepmerge#options).
+  For example: array merge overwriteMerge option
+*/
+gulp.src("./manifest.json")
+  .pipe(jeditor({ 
+    "authors": ["tomcat"] 
+  },
+  // the second argument is passed to js-beautify as its option
+  {},
+  // the third argument is passed to deepmerge options, eg, arrayMerge options
+  { 
+    arrayMerge: function (dist,source,options) {return source;} 
+  }))
+  .pipe(gulp.dest("./dest"));
 ```
 
 ### Note
@@ -61,7 +77,7 @@ gulp.src("./manifest.json")
 
 
 ## API
-### jeditor(editorObject, [jsBeautifyOptions])
+### jeditor(editorObject, [jsBeautifyOptions], [mergeOptions])
 #### editorObject
 Type: `JSON object`
 
@@ -71,6 +87,11 @@ JSON object to merge with.
 Type: `object`
 
 This object is passed to js-beautify as its option.
+
+#### mergeOptions
+Type: `object`
+
+The merge options passed to [deepmerge](https://github.com/TehShrike/deepmerge#options).
 
 ### jeditor(editorFunction, [jsBeautifyOptions])
 #### editorFunction

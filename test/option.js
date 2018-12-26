@@ -33,6 +33,7 @@ it('should pass-through second argument to js-beautify', function(done) {
       '\t\t\t\t\t\t"version": "2.0.1",\n' +
       '\t\t\t\t\t\t"description": "this is test for nested"\n' +
       '\t\t\t},\n' +
+      '\t\t\t"authors": ["tom"],\n' +
       '\t\t\t"description": "this is test",\n' +
       '\t\t\t"array": ["1234567890", "1234567890", "1234567890", "1234567890",\n' +
       '\t\t\t\t\t\t"1234567890", "1234567890", "1234567890", "1234567890"\n' +
@@ -75,6 +76,7 @@ it('should keep indentation', function(done) {
       '    "version": "2.0.1",\n' +
       '    "description": "this is test for nested"\n' +
       '  },\n' +
+      '  "authors": ["tom"],\n' +
       '  "description": "this is test",\n' +
       '  "array": ["1234567890", "1234567890", "1234567890", "1234567890",\n' +
       '    "1234567890", "1234567890", "1234567890", "1234567890"\n' +
@@ -104,7 +106,34 @@ it('should bypass beautification when property is set', function(done) {
   }));
 
   stream.on('data', function(file) {
-    var expected = '{"name":"test object","version":"2.0.0","nested":{"name":"nested object","version":"2.0.1","description":"this is test for nested"},"description":"this is test","array":["1234567890","1234567890","1234567890","1234567890","1234567890","1234567890","1234567890","1234567890"]}';
+    var expected = '{"name":"test object","version":"2.0.0","nested":{"name":"nested object","version":"2.0.1","description":"this is test for nested"},"authors":["tom"],"description":"this is test","array":["1234567890","1234567890","1234567890","1234567890","1234567890","1234567890","1234567890","1234567890"]}';
+    file.contents.toString().should.eql(expected);
+    done();
+  });
+});
+
+
+it('should merged with arrayMerge of overwriteMerge', function (done) {
+
+  var stream = gulp.src('test/test.json').pipe(json({
+    "authors": ["tomcat"]
+  },{},{
+    arrayMerge: function (dist,source,options) {
+      return source;
+    }
+  }));
+
+  stream.on('data', function (file) {
+    var expected =
+       '{\n' +
+       '  "name": "test object",\n' +
+       '  "version": "1.0.0",\n' +
+       '  "nested": {\n' +
+       '    "name": "nested object",\n' +
+       '    "version": "1.0.0"\n' +
+       '  },\n' +
+       '  "authors": ["tomcat"]\n' +
+       '}';
     file.contents.toString().should.eql(expected);
     done();
   });

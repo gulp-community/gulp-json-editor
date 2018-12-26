@@ -15,7 +15,8 @@ it('should modify property of JSON object (by object editor)', function(done) {
       '  "nested": {\n' +
       '    "name": "nested object",\n' +
       '    "version": "1.0.0"\n' +
-      '  }\n' +
+      '  },\n' +
+      '  "authors": ["tom"]\n' +
       '}';
     file.contents.toString().should.eql(expected);
     done();
@@ -38,6 +39,7 @@ it('should add property of JSON object (by object editor)', function(done) {
       '    "name": "nested object",\n' +
       '    "version": "1.0.0"\n' +
       '  },\n' +
+      '  "authors": ["tom"],\n' +
       '  "description": "this is test"\n' +
       '}';
     file.contents.toString().should.eql(expected);
@@ -62,7 +64,8 @@ it('should modify nested property of JSON object (by object editor)', function(d
       '  "nested": {\n' +
       '    "name": "nested object",\n' +
       '    "version": "2.0.1"\n' +
-      '  }\n' +
+      '  },\n' +
+      '  "authors": ["tom"]\n' +
       '}';
     file.contents.toString().should.eql(expected);
     done();
@@ -87,7 +90,8 @@ it('should add nested property of JSON object (by object editor)', function(done
       '    "name": "nested object",\n' +
       '    "version": "1.0.0",\n' +
       '    "description": "this is test for nested"\n' +
-      '  }\n' +
+      '  },\n' +
+      '  "authors": ["tom"]\n' +
       '}';
     file.contents.toString().should.eql(expected);
     done();
@@ -116,6 +120,7 @@ it('should multiple properties of JSON object (by object editor)', function(done
       '    "version": "2.0.1",\n' +
       '    "description": "this is test for nested"\n' +
       '  },\n' +
+      '  "authors": ["tom"],\n' +
       '  "description": "this is test"\n' +
       '}';
     file.contents.toString().should.eql(expected);

@@ -4,7 +4,14 @@ var through      = require('through2');
 var PluginError  = require('plugin-error');
 var detectIndent = require('detect-indent');
 
-module.exports = function (editor, jsbeautifyOptions) {
+module.exports = function (editor, jsbeautifyOptions, mergeOptions) {
+
+
+  /*
+   * extras merge options
+   * this options is only pass to deepmerge
+   */
+   mergeOptions = mergeOptions || {};
 
   /*
    * create 'editBy' function from 'editor'
@@ -16,7 +23,7 @@ module.exports = function (editor, jsbeautifyOptions) {
   }
   else if (typeof editor === 'object') {
     // edit JSON object by merging with user specific object
-    editBy = function(json) { return merge(json, editor); };
+    editBy = function(json) { return merge(json, editor, mergeOptions); };
   }
   else if (typeof editor === 'undefined') {
     throw new PluginError('gulp-json-editor', 'missing "editor" option');
