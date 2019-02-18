@@ -22,7 +22,7 @@
     "eslint": "^5.11.0",
     "eslint-config-gulp": "^3.0.1",
     "gulp": "^4.0.0",
-    "mocha": "^5.2.0",
+    "mocha": "^6.0.0",
     "should": "^13.2.3",
     "vinyl": "^2.2.0"
   },
