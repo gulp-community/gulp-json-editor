@@ -16,7 +16,7 @@ it('should pass-through second argument to js-beautify', function(done) {
   },
   {
     indent_size: 3,
-    indent_char: '\t',
+    indent_char: ' ',
     brace_style: 'expand',
     preserve_newlines: false,
     wrap_line_length: 80,
@@ -25,19 +25,19 @@ it('should pass-through second argument to js-beautify', function(done) {
   stream.on('data', function(file) {
     var expected =
       '{\n' +
-      '\t\t\t"name": "test object",\n' +
-      '\t\t\t"version": "2.0.0",\n' +
-      '\t\t\t"nested":\n' +
-      '\t\t\t{\n' +
-      '\t\t\t\t\t\t"name": "nested object",\n' +
-      '\t\t\t\t\t\t"version": "2.0.1",\n' +
-      '\t\t\t\t\t\t"description": "this is test for nested"\n' +
-      '\t\t\t},\n' +
-      '\t\t\t"authors": ["tom"],\n' +
-      '\t\t\t"description": "this is test",\n' +
-      '\t\t\t"array": ["1234567890", "1234567890", "1234567890", "1234567890",\n' +
-      '\t\t\t\t\t\t"1234567890", "1234567890", "1234567890", "1234567890"\n' +
-      '\t\t\t]\n' +
+      '   "name": "test object",\n' +
+      '   "version": "2.0.0",\n' +
+      '   "nested":\n' +
+      '   {\n' +
+      '      "name": "nested object",\n' +
+      '      "version": "2.0.1",\n' +
+      '      "description": "this is test for nested"\n' +
+      '   },\n' +
+      '   "authors": ["tom"],\n' +
+      '   "description": "this is test",\n' +
+      '   "array": ["1234567890", "1234567890", "1234567890", "1234567890",\n' +
+      '      "1234567890", "1234567890", "1234567890", "1234567890"\n' +
+      '   ]\n' +
       '}';
 
     file.contents.toString().should.eql(expected);

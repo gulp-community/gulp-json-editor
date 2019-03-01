@@ -4,12 +4,12 @@ var through      = require('through2');
 var PluginError  = require('plugin-error');
 var detectIndent = require('detect-indent');
 
-module.exports = function (editor, jsbeautifyOptions, deepmergeOptions) {
+module.exports = function(editor, jsbeautifyOptions, deepmergeOptions) {
 
   /*
    * deepmerge options
    */
-   deepmergeOptions = deepmergeOptions || {};
+  deepmergeOptions = deepmergeOptions || {};
 
   /*
    * create 'editBy' function from 'editor'
@@ -18,15 +18,12 @@ module.exports = function (editor, jsbeautifyOptions, deepmergeOptions) {
   if (typeof editor === 'function') {
     // edit JSON object by user specific function
     editBy = function(json) { return editor(json); };
-  }
-  else if (typeof editor === 'object') {
+  } else if (typeof editor === 'object') {
     // edit JSON object by merging with user specific object
     editBy = function(json) { return deepmerge(json, editor, deepmergeOptions); };
-  }
-  else if (typeof editor === 'undefined') {
+  } else if (typeof editor === 'undefined') {
     throw new PluginError('gulp-json-editor', 'missing "editor" option');
-  }
-  else {
+  } else {
     throw new PluginError('gulp-json-editor', '"editor" option must be a function or object');
   }
 
@@ -38,7 +35,7 @@ module.exports = function (editor, jsbeautifyOptions, deepmergeOptions) {
   /*
    * create through object and return it
    */
-  return through.obj(function (file, encoding, callback) {
+  return through.obj(function(file, encoding, callback) {
 
     // ignore it
     if (file.isNull()) {
@@ -72,8 +69,7 @@ module.exports = function (editor, jsbeautifyOptions, deepmergeOptions) {
 
       // write it to file
       file.contents = Buffer.from(json);
-    }
-    catch (err) {
+    } catch (err) {
       this.emit('error', new PluginError('gulp-json-editor', err));
     }
 
