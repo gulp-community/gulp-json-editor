@@ -19,7 +19,7 @@
     "through2": "^3.0.1"
   },
   "devDependencies": {
-    "eslint": "^5.14.1",
+    "eslint": "^5.15.3",
     "eslint-config-gulp": "^3.0.1",
     "gulp": "^4.0.0",
     "mocha": "^6.0.2",
