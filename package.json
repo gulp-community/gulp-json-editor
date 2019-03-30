@@ -14,12 +14,12 @@
   "dependencies": {
     "deepmerge": "^3.2.0",
     "detect-indent": "^5.0.0",
-    "js-beautify": "^1.9.0",
+    "js-beautify": "^1.9.1",
     "plugin-error": "^1.0.1",
     "through2": "^3.0.1"
   },
   "devDependencies": {
-    "eslint": "^5.15.3",
+    "eslint": "^5.16.0",
     "eslint-config-gulp": "^3.0.1",
     "gulp": "^4.0.0",
     "mocha": "^6.0.2",
@@ -35,7 +35,8 @@
     "json"
   ],
   "scripts": {
-    "lint": "eslint --fix **/*.js",
+    "eslint": "eslint *.js test/*.js",
+    "eslint:fix": "eslint --fix *.js test/*.js",
     "test": "mocha"
   }
 }
