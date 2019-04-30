@@ -45,7 +45,8 @@ module.exports = function(editor, jsbeautifyOptions, deepmergeOptions) {
 
     // stream is not supported
     if (file.isStream()) {
-      this.emit('error', new PluginError('gulp-json-editor', 'Streaming is not supported'));
+      this.emit('error',
+        new PluginError('gulp-json-editor', 'Streaming is not supported'));
       return callback();
     }
 

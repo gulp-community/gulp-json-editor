@@ -10,7 +10,8 @@ it('should raise error when missing option', function(done) {
 
 
 it('should raise error when invalid type of option', function(done) {
-  should(function() {json(1);}).throw('"editor" option must be a function or object');
+  should(function() {json(1);})
+    .throw('"editor" option must be a function or object');
   done();
 });
 

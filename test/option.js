@@ -7,7 +7,8 @@ it('should pass-through second argument to js-beautify', function(done) {
     version: '2.0.0',
     description: 'this is test',
     array: [
-      '1234567890', '1234567890', '1234567890', '1234567890', '1234567890', '1234567890', '1234567890', '1234567890',
+      '1234567890', '1234567890', '1234567890', '1234567890',
+      '1234567890', '1234567890', '1234567890', '1234567890',
     ],
     nested: {
       version: '2.0.1',
@@ -52,7 +53,8 @@ it('should keep indentation', function(done) {
     version: '2.0.0',
     description: 'this is test',
     array: [
-      '1234567890', '1234567890', '1234567890', '1234567890', '1234567890', '1234567890', '1234567890', '1234567890',
+      '1234567890', '1234567890', '1234567890', '1234567890',
+      '1234567890', '1234567890', '1234567890', '1234567890',
     ],
     nested: {
       version: '2.0.1',
@@ -94,7 +96,8 @@ it('should bypass beautification when property is set', function(done) {
     version: '2.0.0',
     description: 'this is test',
     array: [
-      '1234567890', '1234567890', '1234567890', '1234567890', '1234567890', '1234567890', '1234567890', '1234567890',
+      '1234567890', '1234567890', '1234567890', '1234567890',
+      '1234567890', '1234567890', '1234567890', '1234567890',
     ],
     nested: {
       version: '2.0.1',
@@ -106,7 +109,12 @@ it('should bypass beautification when property is set', function(done) {
   }));
 
   stream.on('data', function(file) {
-    var expected = '{"name":"test object","version":"2.0.0","nested":{"name":"nested object","version":"2.0.1","description":"this is test for nested"},"authors":["tom"],"description":"this is test","array":["1234567890","1234567890","1234567890","1234567890","1234567890","1234567890","1234567890","1234567890"]}';
+    var expected = '{"name":"test object","version":"2.0.0",' +
+      '"nested":{"name":"nested object","version":"2.0.1",' +
+      '"description":"this is test for nested"},"authors":["tom"],' +
+      '"description":"this is test",' +
+      '"array":["1234567890","1234567890","1234567890","1234567890",' +
+      '"1234567890","1234567890","1234567890","1234567890"]}';
     file.contents.toString().should.eql(expected);
     done();
   });
