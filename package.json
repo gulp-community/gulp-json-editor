@@ -21,8 +21,8 @@
   "devDependencies": {
     "eslint": "^5.16.0",
     "eslint-config-gulp": "^3.0.1",
-    "gulp": "^4.0.0",
-    "mocha": "^6.1.0",
+    "gulp": "^4.0.1",
+    "mocha": "^6.1.4",
     "should": "^13.2.3",
     "vinyl": "^2.2.0"
   },
