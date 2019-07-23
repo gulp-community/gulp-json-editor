@@ -109,4 +109,7 @@ Type: `object`
 This object is passed to deepmerge as its [option](https://github.com/TehShrike/deepmerge#options).
 
 ## License
-[MIT License](http://en.wikipedia.org/wiki/MIT_License)
+
+Copyright (c) 2019 rejas
+
+Licensed under the [MIT license](LICENSE).
