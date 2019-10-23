@@ -2,5 +2,8 @@
 	"extends": "gulp",
 	"env": {
 		"mocha": true
+	},
+	"rules" : {
+		"max-len": ["error", { "code": 110 }]
 	}
 }

@@ -126,7 +126,7 @@ it('should pass-through third argument to deepmerge and do an overwriteMerge', f
   var stream = gulp.src('test/test.json').pipe(json({
     authors: ['tomcat'],
   },{},{
-    arrayMerge: function(dist,source,options) {
+    arrayMerge: function(dist,source) {
       return source;
     },
   }));
