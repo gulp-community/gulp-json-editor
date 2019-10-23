@@ -1,3 +1,15 @@
+## 2.5.4
+
+### Changed
+
+  - Update dependencies
+  
+## 2.5.3
+
+### Changed
+
+  - Update dependencies
+  
 ## 2.5.2
 
 ### Changed
