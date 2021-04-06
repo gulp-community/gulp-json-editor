@@ -1,3 +1,9 @@
+## 2.5.5
+
+### Changed
+
+- Update dependencies
+
 ## 2.5.4
 
 ### Changed
