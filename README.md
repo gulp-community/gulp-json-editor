@@ -1,7 +1,7 @@
 # gulp-json-editor
 
 [![npm version](https://badge.fury.io/js/gulp-json-editor.svg)](https://www.npmjs.com/package/gulp-json-editor)
-[![Build Status](https://secure.travis-ci.org/rejas/gulp-json-editor.png?branch=master)](https://travis-ci.org/rejas/gulp-json-editor) 
+[![Automated tests](https://github.com/rejas/gulp-json-editor/actions/workflows/run-tests.yml/badge.svg)](https://github.com/rejas/gulp-json-editor/actions/workflows/run-tests.yml)
 
 gulp-json-editor is a [gulp](https://github.com/gulpjs/gulp) plugin to edit JSON objects.
 
