@@ -1,7 +1,7 @@
 # gulp-json-editor
 
 [![npm version](https://badge.fury.io/js/gulp-json-editor.svg)](https://www.npmjs.com/package/gulp-json-editor)
-[![Automated tests](https://github.com/rejas/gulp-json-editor/actions/workflows/run-tests.yml/badge.svg)](https://github.com/rejas/gulp-json-editor/actions/workflows/run-tests.yml)
+[![Automated tests](https://github.com/gulp-community/gulp-json-editor/actions/workflows/run-tests.yml/badge.svg)](https://github.com/gulp-community/gulp-json-editor/actions/workflows/run-tests.yml)
 
 gulp-json-editor is a [gulp](https://github.com/gulpjs/gulp) plugin to edit JSON objects.
 
@@ -110,6 +110,6 @@ This object is passed to deepmerge as its [option](https://github.com/TehShrike/
 
 ## License
 
-Copyright (c) 2021 rejas
+Copyright (c) 2023 gulp-community
 
 Licensed under the [MIT license](LICENSE).
