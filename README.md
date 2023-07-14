@@ -110,6 +110,6 @@ This object is passed to deepmerge as its [option](https://github.com/TehShrike/
 
 ## License
 
-Copyright (c) 2021 rejas
+Copyright (c) 2023 gulp-community
 
 Licensed under the [MIT license](LICENSE).
